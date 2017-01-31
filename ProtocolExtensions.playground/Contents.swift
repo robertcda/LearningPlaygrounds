@@ -6,74 +6,38 @@ import UIKit
 
 var str = "Hello, playground"
 
-/* PRotocol extensions */
-protocol masterProtocol{
-    
-}
-protocol FirstProtocol:masterProtocol{
-    var someAttr1:String?{
-        get
+/* 
+ Protocol extensions:
+ This is something I really am amazed. The ability to add functionality to protocols using protocol extensions.
+ */
+
+// A text book example of this would be.
+
+// Lets define a protocol that shows that something has life
+protocol Life{}
+
+// A human being can have life.
+class HumanBeing:Life{}
+
+// A plant can have life too
+class Plant: Life{}
+
+// At a later point in time in the evolution of my app, i come up with a philosophical thought.
+// "Everything that has life has a soul." - I would like to talk to the soul of everything that has life.
+extension Life{
+    func dearSoul(message:String){
+        print("\(self): Soul: \(message)")
     }
 }
 
-extension FirstProtocol{
-    func secondaryFunc(){
-        print("secondaryFunc: self.someAttr1:\(self.someAttr1)")
-    }
-}
-
-
-class ProtoExtensionClass{
-    var someAttr1:String? = "string"
-}
-extension ProtoExtensionClass:FirstProtocol{}
-
-class SecondClass:FirstProtocol{
-    var someAttr1:String? = "string"
-}
-
-let protoObj = ProtoExtensionClass()
-protoObj.secondaryFunc()
-
-let secondObj = SecondClass()
-secondObj.secondaryFunc()
-
-
-/*****/
-protocol SomeStringProtocol{
-    
-}
-extension String:SomeStringProtocol{
-    
-}
-
-extension Array where Element:SomeStringProtocol {
-    func getFirstStringValue() -> SomeStringProtocol?{
-        return self.first
-    }
-}
-
-let arrayOfStrings:[String] = ["str1","str2"]
-arrayOfStrings.getFirstStringValue
-
+let human = HumanBeing()
+let mangoPlant = Plant()
+human.dearSoul(message:"How are you?")
+mangoPlant.dearSoul(message:"I never knew you had life")
 
 /*
- ============
-*/
-class SomeClass{
-    
-}
-
-extension Array where Element:SomeClass {
-    mutating func removeSomething(){
-        self.remove(at: 0)
-    }
-    mutating func addSomeClass(some:SomeClass){
-        self.append((some as? Element)!)
-    }
-}
+ Isn't this cool, Plant & HumanBeing are just empty classes, by just complying to a protocol, it has the ability to add some functionality to it.
+ */
+/* ============== */
 
 
-var arr = [SomeClass(),SomeClass(),SomeClass()]
-arr.removeSomething()
-arr.addSomeClass(some: SomeClass())
