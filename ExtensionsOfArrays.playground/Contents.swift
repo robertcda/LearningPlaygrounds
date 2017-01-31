@@ -3,30 +3,23 @@
 import UIKit
 
 
-/*****/
-protocol SomeStringProtocol{
-    
-}
-extension String:SomeStringProtocol{
-    
-}
+/**  Extending Arrays: if I want to add functionality to an Array which holds elements of type protocol. ***/
+protocol SomeStringProtocol{}
+
+/* Here we can even make String Struct comply to this, for it to work with Array of Strings. */
+extension String:SomeStringProtocol{}
 
 extension Array where Element:SomeStringProtocol {
     func getFirstStringValue() -> SomeStringProtocol?{
         return self.first
     }
 }
-
 let arrayOfStrings:[String] = ["str1","str2"]
 arrayOfStrings.getFirstStringValue
 
 
-/*
- ============
-*/
-class SomeClass{
-    
-}
+/** Extending Arrays, which contain a particular Class type.*/
+class SomeClass{}
 
 extension Array where Element:SomeClass {
     mutating func removeSomething(){
@@ -36,7 +29,6 @@ extension Array where Element:SomeClass {
         self.append((some as? Element)!)
     }
 }
-
 
 var arr = [SomeClass(),SomeClass(),SomeClass()]
 arr.removeSomething()
