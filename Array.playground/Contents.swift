@@ -2,8 +2,26 @@
 
 import UIKit
 
-// The power of flatmap
+//============
+// Reduce
+//============
 
+let names = ["alan","brian","charlie","dick"]
+let csv = names.reduce("FirstValue:") {text, name in "\(text),\(name)"}
+print(csv)
+// "===,alan,brian,charlie"
+
+let nubmersToFindSum = [1,2,3,4,5]
+let csv2 = nubmersToFindSum.reduce(0) {combinedValue, number2 in
+    print("combinedValue=\(combinedValue)")
+    return combinedValue + number2
+}
+print(csv2)
+
+
+//==============
+// The power of flatmap
+//==============
 var arrayOfArrays = [ [1, 1], [2, 2], [3, 3] ]
 
 // If i want to multiply each value with some constant, we can achieve this by calling map twice.
